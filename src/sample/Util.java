@@ -85,7 +85,11 @@ public class Util {
         int count = 0;
         for (int i = 0; i < stringList.length; i++) {
             if (stringList[i].equals("[")){
-                count = i + 1;
+                count = i + 1;//5-6-7-8
+                i++;
+            }else {
+                result[newArrayCount] = stringList[i];
+                newArrayCount++;
             }
             if (count != 0){
                 result[newArrayCount] = ("[-" + stringList[count]);
