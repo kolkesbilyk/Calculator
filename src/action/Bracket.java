@@ -1,7 +1,8 @@
-package sample;
+package action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Bracket {
     private int startBracket;
@@ -25,7 +26,7 @@ public class Bracket {
         int countEnterBracket = 0;
         int count = 0;
         List<Bracket> b = new ArrayList<>();
-        List<Sign> brackets = signs.stream().filter(Sign::isBracket).toList();
+        List<Sign> brackets = signs.stream().filter(Sign::isBracket).collect(Collectors.toList());
         if (isCorrectBrackets(brackets)){
             for (Sign bracket: brackets){
                 if (bracket.getSign().equals("(")) {
@@ -54,7 +55,7 @@ public class Bracket {
     }
 
     private static void setSingInBracket(List<Sign> signs, List<Sign> brackets, List<Bracket> bracketList){
-        List<Sign> openBrackets = brackets.stream().filter(b -> b.getSign().equals("(")).toList();
+        List<Sign> openBrackets = brackets.stream().filter(b -> b.getSign().equals("(")).collect(Collectors.toList());
         for (Sign bracketSing: openBrackets){
             for (int i = 0; i < signs.size(); i++) {
                 if (signs.get(i).equals(bracketSing)){
@@ -81,8 +82,8 @@ public class Bracket {
     }
 
     private static boolean isCorrectBrackets(List<Sign> brackets) throws IllegalArgumentException{
-        List<Sign> openBrackets = brackets.stream().filter(b -> b.getSign().equals("(")).toList();
-        List<Sign> closeBrackets = brackets.stream().filter(b -> b.getSign().equals(")")).toList();
+        List<Sign> openBrackets = brackets.stream().filter(b -> b.getSign().equals("(")).collect(Collectors.toList());
+        List<Sign> closeBrackets = brackets.stream().filter(b -> b.getSign().equals(")")).collect(Collectors.toList());
         return openBrackets.size() == closeBrackets.size() && openBrackets.get(0).getSign().equals("(");
     }
 

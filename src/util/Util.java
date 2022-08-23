@@ -1,7 +1,10 @@
-package sample;
+package util;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import action.Sign;
 
 public class Util {
 
@@ -50,10 +53,7 @@ public class Util {
     }
 
     public static String removeEnd(String result){
-        if (result.endsWith(".0")){
-            result = result.replace(".0", "").replace("[", "").replace("]", "");
-        }
-        return result;
+        return result.replace(".0", "").replace("[", "").replace("]", "");
     }
 
     public static boolean isSampleWithBrackets(String input){
@@ -62,7 +62,7 @@ public class Util {
 
     public static Double[] parseArray(String[] array){
         if (array.length > 2){
-            List<String> stringList = Arrays.stream(array).toList();
+            List<String> stringList = Arrays.stream(array).collect(Collectors.toList());
             array = parseList(array);
         }
         Double[] doubleArray = new Double[array.length];
